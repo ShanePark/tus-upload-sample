@@ -1,0 +1,3 @@
+tus.upload:
+  dir: /home/shane/Downloads
+  expiration: 86400000
