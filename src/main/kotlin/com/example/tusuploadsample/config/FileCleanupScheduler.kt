@@ -13,7 +13,7 @@ class FileCleanupScheduler(
 ) {
     val log: Logger = org.slf4j.LoggerFactory.getLogger(FileCleanupScheduler::class.java)
 
-    @Scheduled(fixedDelayString = "PT24H")
+    @Scheduled(fixedDelayString = "PT12H")
     fun cleanup() {
         log.info("clean up")
         fileUploadService.cleanup()
