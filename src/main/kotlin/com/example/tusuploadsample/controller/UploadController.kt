@@ -3,7 +3,6 @@ package com.example.tusuploadsample.controller
 import me.desair.tus.server.TusFileUploadService
 import org.apache.commons.io.FileUtils
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod.*
@@ -19,12 +18,11 @@ class UploadController(
     @Value("\${tus.upload.dir}")
     private val tusStoragePath: String,
 ) {
-
     @RequestMapping(
         value = ["/upload", "/upload/**"],
         method = [GET, POST, HEAD, PATCH, DELETE]
     )
-    fun tusUpload(request: HttpServletRequest, response: HttpServletResponse): ResponseEntity<Any> {
+    fun tusUpload(request: HttpServletRequest, response: HttpServletResponse) {
         fileUploadService.process(request, response)
 
         val requestURI = request.requestURI
@@ -39,8 +37,6 @@ class UploadController(
                 fileUploadService.deleteUpload(requestURI)
             }
         }
-
-        return ResponseEntity.ok().build()
     }
 
 }
